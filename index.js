@@ -1,15 +1,18 @@
-const TelegramBot = require("node-telegram-bot-api");
 const express = require("express");
 const app = express();
 app.use(express.json());
 
 const TOKEN = "bot5896325394:AAFavOTsIbpsocGE6ep1zvOEbTyRnV7bOJU";
-const bot = new TelegramBot(TOKEN);
-// bot.setWebHook("https://telebot-production-29ce.up.railway.app/");
+const URL = `https://api.telegram.org/${TOKEN}`;
+
+const sendMessage = (chatId, text, replyTo) =>
+  URL +
+  `/sendMessage?chat_id=${chatId}&text=${text}&reply_to_message_id=${replyTo}`;
 
 app.post("/", async (req, res) => {
   let {
     message: {
+      message_id: replyTo,
       from: { first_name },
       chat: { id: chatId },
       text,
@@ -20,13 +23,16 @@ app.post("/", async (req, res) => {
 
   switch (text) {
     case "Hi":
-      await bot.sendMessage(chatId, `Hello ${first_name}`);
+      await fetch(sendMessage(chatId, `Hello ${first_name}`, replyTo));
       break;
     case "Ayush":
-      await bot.sendMessage(chatId, "Hey Ash");
+      await fetch(sendMessage(chatId, "Hey Ash", replyTo));
       break;
     case "Chetan":
-      await bot.sendMessage(chatId, "Hi Storm");
+      await fetch(sendMessage(chatId, "Hi Storm", replyTo));
+      break;
+    default:
+      await fetch(sendMessage(chatId, "I did't understand", replyTo));
       break;
   }
 
