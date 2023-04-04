@@ -3,9 +3,9 @@ const app = express();
 
 app.get("/", (req, res) => {
   console.log(req.body);
-  res.send("Hello");
+  res.send(req.body);
 });
 
-app.listen(8080, () => {
+app.listen(process.env.PORT || 8000, () => {
   console.log("Hello");
 });
