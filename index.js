@@ -16,6 +16,8 @@ app.post("/", (req, res) => {
     },
   } = req.body;
 
+  console.log(first_name, chatId, text);
+
   switch (text) {
     case "Hi":
       bot.sendMessage(chatId, `Hello ${first_name}`);
@@ -32,5 +34,5 @@ app.post("/", (req, res) => {
 });
 
 app.listen(process.env.PORT || 8000, () => {
-  console.log("Hello");
+  console.log("Server Started...");
 });

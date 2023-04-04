@@ -24,11 +24,22 @@ let data = {
 
 let {
   message: {
-    chat: { id: ID },
+    from: { first_name },
+    chat: { id: chatId },
     text,
   },
-
-  message,
 } = data;
 
-console.log(text);
+switch (text) {
+  case "Hi":
+    bot.sendMessage(chatId, `Hello ${first_name}`);
+    break;
+  case "Ayush":
+    bot.sendMessage(chatId, "Hey Ash");
+    break;
+  case "Chetan":
+    bot.sendMessage(chatId, "Hi Storm");
+    break;
+}
+
+console.log(first_name);
