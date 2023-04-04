@@ -5,6 +5,7 @@ app.use(express.json());
 
 const TOKEN = "bot5896325394:AAFavOTsIbpsocGE6ep1zvOEbTyRnV7bOJU";
 const bot = new TelegramBot(TOKEN);
+bot.setWebHook("https://telebot-production-29ce.up.railway.app/");
 
 app.post("/", (req, res) => {
   let {
