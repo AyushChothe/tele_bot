@@ -1,3 +1,4 @@
+const axios = require("axios");
 const express = require("express");
 const app = express();
 app.use(express.json());
@@ -23,16 +24,16 @@ app.post("/", async (req, res) => {
 
   switch (text) {
     case "Hi":
-      await fetch(sendMessage(chatId, `Hello ${first_name}`, replyTo));
+      await axios.get(sendMessage(chatId, `Hello ${first_name}`, replyTo));
       break;
     case "Ayush":
-      await fetch(sendMessage(chatId, "Hey Ash", replyTo));
+      await axios.get(sendMessage(chatId, "Hey Ash", replyTo));
       break;
     case "Chetan":
-      await fetch(sendMessage(chatId, "Hi Storm", replyTo));
+      await axios.get(sendMessage(chatId, "Hi Storm", replyTo));
       break;
     default:
-      await fetch(sendMessage(chatId, "I did't understand", replyTo));
+      await axios.get(sendMessage(chatId, "I did't understand", replyTo));
       break;
   }
 
