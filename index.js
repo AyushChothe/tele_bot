@@ -1,13 +1,12 @@
 const TelegramBot = require("node-telegram-bot-api");
 const express = require("express");
 const app = express();
-
-const TOKEN = "bot5896325394:AAFavOTsIbpsocGE6ep1zvOEbTyRnV7bOJU";
-
 app.use(express.json());
 
+const TOKEN = "bot5896325394:AAFavOTsIbpsocGE6ep1zvOEbTyRnV7bOJU";
+const bot = new TelegramBot(TOKEN);
+
 app.post("/", (req, res) => {
-  const bot = new TelegramBot(TOKEN);
   let {
     message: {
       from: { first_name },
